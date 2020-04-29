@@ -1,0 +1,18 @@
+{
+  "name": "laps",
+  "version": "0.0.1",
+  "description": "Personal web based laps timing system for RC HourGlass project",
+  "main": "laps.js",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-ws": "^4.0.0",
+    "serialport": "^8.0.7",
+    "sprintf-js": "^1.1.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "snowblind@km4mxq.org",
+  "license": "ISC"
+}
