@@ -4,6 +4,9 @@ Web based app (nodejs) for showing lap data coming from [RC HourGlass](https://g
 
 I would like to thank Marco Venturini - mv4wd for the use of RC HourGlass logo - see licensing terms below
 
+![alt text](https://github.com/snowblind/LAPS/raw/master/image/home.png "home page")
+![alt text](https://github.com/snowblind/LAPS/raw/master/image/transponder_view.png "transponder page")
+
 ## Making it work
 
 Get [NodeJS](https://nodejs.org/en/)
