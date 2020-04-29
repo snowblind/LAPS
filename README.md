@@ -6,6 +6,20 @@ I would like to thank Marco Venturini - mv4wd for the use of RC HourGlass logo -
 
 ## Making it work
 
+Get [NodeJS](https://nodejs.org/en/)
+
+* Get 12.xx.x LTS version
+
+* Install NodeJS
+
+Download my git repository
+
+* use download button or git clone it
+
+* run `npm install` in the dir the package.json file ends up in
+
+* run `node laps.js`
+
 ```javascript
 const port = new SerialPort("com5", { baudRate: 115200 })
 ```
@@ -16,7 +30,7 @@ Right now you need to edit line 4 (looks like the above line) in [laps.js](./lap
 
 * by default it is filled with all transponder IDs included with the RC hourGlass project
 
-* edit the name fleild to have a name show up and not just the ID
+* edit the name field to have a name show up and not just the ID
 
 * This is not required for laps to work
 
@@ -24,7 +38,7 @@ Right now you need to edit line 4 (looks like the above line) in [laps.js](./lap
 
 Right now this a personal (one viewer per detected transponder page) lap software. I dunno if it will ever be a full race type program.
 
-I am working on a new layout for this, but I am not web page designer. It may look ugly to you and I don't care. It works for what I want. I am planing on refactoring the code to make the web page be a static file and be updated with web-sockets. Meaning the web page will not be split up like it is now some html from a file and some html in nodejs code to finsh the html page. I will put all html in a file and have JS client side code change the the DOM of the document with the help of web-sockets.
+I am working on a new layout for this, but I am not web page designer. It may look ugly to you and I don't care. It works for what I want. I am planing on refactoring the code to make the web page be a static file and be updated with web-sockets. Meaning the web page will not be split up like it is now some html from a file and some html in nodejs code to finish the html page. I will put all html in a file and have JS client side code change the the DOM of the document with the help of web-sockets.
 This would allow someone with better web skills to change the look of the page with the html and css files
 
 Currently this only allows on connection to each personal transponder page.. Any new connection from another device takes over the connection. This may change or a may make like a watch all web page with filters so spectators can watch what is going on.
@@ -39,7 +53,7 @@ I use icons from: here
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANYKIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OROTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OROTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE." Michael Pounders - snowblind
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE." Michael Pounders - snowblind
 
 * RC HourGlass:
 
@@ -70,4 +84,4 @@ Any device derived from this project must respond to the command 'License' with 
 
 THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANYKIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
 
-IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OROTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OROTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE." Marco Venturini - mv4wd
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE." Marco Venturini - mv4wd

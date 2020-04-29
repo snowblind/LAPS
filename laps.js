@@ -19,7 +19,7 @@ const fs = require('fs');
 var tlist = require( "./transponders.json");                                                           //TODO:MJP Add a way to edit this from a web page maybe
 
 var found_transids = [];
-
+/* 
 //setup transponder id with info for testing
  
 found_transids[7531106] = { 
@@ -31,7 +31,7 @@ found_transids[7531106] = {
   name: 'JoeP',
   laps: { lap1: '00:07.748', lap2: '00:10.816', lap3: '00:05.035' } }
 
-
+ */
 
 var appData ={
   flap: 0,
@@ -81,7 +81,7 @@ app.use('/icons', express.static( 'web/icons'));
       console.log("WS://"+ tid + ": " + msg);
       
       
-              if ( msg[0] == '{' ){                       //TODO:MJP is there a check for a vaild json string? before parseing to JSON.parse
+              if ( msg[0] == '{' ){                       //TODO:MJP is there a check for a valid json string? before parsing to JSON.parse
                 myJson = JSON.parse(msg);
                 //console.log( myJson );
 
@@ -100,7 +100,7 @@ app.use('/icons', express.static( 'web/icons'));
 
 app.get('/', (req, res) =>{     // HTML ROOT
   let body = ''
-  let cache = [];                                                         //TODO:MJP Remove this when finshed and use cached version when hmtl code is done
+  let cache = [];                                                         //TODO:MJP Remove this when finished and use cached version when hmtl code is done
   cache[0] = fs.readFileSync( __dirname + '/web/html/top_root.html');     //TODO:MJP rename to root.html 
                                                                           //TODO:MJP I plan on refactoring the code to move the html below back into root.html
           body+= "<div><header><h1>Found Transponders</h1></header><p></p><p></p>"                                   //List transponders
@@ -122,7 +122,7 @@ app.get('*', (req, res) =>{    // Handle transponder ids
   var ftid = found_transids[tid]
   var body = ''
   let cache = [];
-  var fastlap                                                                                           //TODO:MJP Remove this when finshed and use cached version when hmtl code is done
+  var fastlap                                                                                           //TODO:MJP Remove this when finished and use cached version when html code is done
   cache[1] = fs.readFileSync( __dirname + '/web/html/top_transponder.html');                            //TODO:MJP rename to transponder.html
                                                                                                         //TODO:MJP I plan on refactoring the code to move the html below back into transponder.html 
   if( ! found_transids[tid] )
@@ -196,7 +196,7 @@ parser.on('data', line => {
 
         found_transids[transid].wsid.send( JSON.stringify( found_transids[transid].laps ) )
 
-        //console.log(found_transids.length ); //using transponder number as id makes this array kinda large but I dont care 
+        //console.log(found_transids.length ); //using transponder number as id makes this array kinda large but I don't care 
         printmyDataObj( found_transids[transid] ); //for debug
 
   })
