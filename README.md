@@ -1,13 +1,18 @@
 # LAPS
 
+___
+
 Web based app (nodejs) for showing lap data coming from [RC HourGlass](https://github.com/mv4wd/RCHourglass "RC HourGlass github project page") DIY lap timing system hardware.
 
 I would like to thank Marco Venturini - mv4wd for the use of RC HourGlass logo - see licensing terms below
 
-![alt text](https://github.com/snowblind/LAPS/raw/master/image/home.png "home page")
-![alt text](https://github.com/snowblind/LAPS/raw/master/image/transponder_view.png "transponder page")
+[Screenshots and help here](https://github.com/snowblind/LAPS/raw/master/image/SHOW.md)
 
 ## Making it work
+
+___
+
+### Windows PC install:
 
 Get [NodeJS](https://nodejs.org/en/)
 
@@ -19,38 +24,45 @@ Download my git repository
 
 * use download button or git clone it
 
-* run `npm install` in the dir the package.json file ends up in
+* run `npm install` in the dir the package.json file ends up in. Run this when you update also I may have added a new module to the project.
 
-* run `node laps.js`
+* run `node laps.js --serialport 'your com port'`  example: `node laps.js --serialport com5`
 
-```javascript
-const port = new SerialPort("com5", { baudRate: 115200 })
-```
+### Raspberry PI Install
 
-Right now you need to edit line 4 (looks like the above line) in [laps.js](./laps.js) to change serial port used
+* coming soon
+
+## Config Options
+
+___
 
 [transponders.json:](./transponders.json)
 
-* by default it is filled with all transponder IDs included with the RC hourGlass project
+* by default it is filled with all transponder IDs included with the RC HourGlass project
 
 * edit the name field to have a name show up and not just the ID
+
+* I may add a way to edit this in the web app
 
 * This is not required for laps to work
 
 ## Project status
 
+___
+
 Right now this a personal (one viewer per detected transponder page) lap software. I dunno if it will ever be a full race type program.
 
-I am working on a new layout for this, but I am not web page designer. It may look ugly to you and I don't care. It works for what I want. I am planing on refactoring the code to make the web page be a static file and be updated with web-sockets. Meaning the web page will not be split up like it is now some html from a file and some html in nodejs code to finish the html page. I will put all html in a file and have JS client side code change the the DOM of the document with the help of web-sockets.
-This would allow someone with better web skills to change the look of the page with the html and css files
+It may look ugly to you and I don't care. It works for what I want. The css, html files are changeable.  
 
-Currently this only allows on connection to each personal transponder page.. Any new connection from another device takes over the connection. This may change or a may make like a watch all web page with filters so spectators can watch what is going on.
+I removed the limit of one connection per transponder page.
 
 At some point I will add info on setting up Raspberry PI to run this.
 
 I use icons from: here
 
 ## Licensing terms
+
+___
 
 * LAPS:
 
@@ -66,7 +78,7 @@ charity of your choice (use 'RC Hourglass for children' as a reference).
 Please feedback your donations to:charity dot rchourglass at gmail.com
 
 Please consider donating 5 euros per transponder and 30 euros for the decoder for personal use.
-If the transponder is used in a club/circuit with an admission fee, please consider dontaing 100 euros for the decoder.
+If the transponder is used in a club/circuit with an admission fee, please consider donating 100 euros for the decoder.
 
 The original RCTech thread author/designer (Howard Cano) license applies to the decoder project:
 
