@@ -26,7 +26,7 @@ Download my git repository
 
 * run `npm install` in the dir the package.json file ends up in. Run this when you update also I may have added a new module to the project.
 
-* run `node laps.js --serialport 'your com port'`  example: `node laps.js --serialport com5`
+* run `node laps.js --serialport your com port`  example: `node laps.js --serialport com5`
 
 ### Raspberry PI Install
 
@@ -50,7 +50,7 @@ ___
 
 ___
 
-Right now this a personal (one viewer per detected transponder page) lap software. I dunno if it will ever be a full race type program.
+Right now this is a "personal" type lap software. You can not see everybody elses laps times at the same you you are looking at yours. I dunno if it will ever be a full race type program.
 
 It may look ugly to you and I don't care. It works for what I want. The css, html files are changeable.  
 

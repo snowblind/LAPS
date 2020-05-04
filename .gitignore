@@ -5,3 +5,7 @@ web_pages_full/
 package-lock.json
 rchourglass_Icon_128x128.ico
 laps.code-workspace
+web/html/home_*.html
+web/html/transponder_*.html
+Project_snips.js
+

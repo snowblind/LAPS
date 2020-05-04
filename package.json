@@ -1,9 +1,10 @@
 {
   "name": "laps",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Personal web based laps timing system for RC HourGlass project",
   "main": "laps.js",
   "dependencies": {
+    "command-line-args": "^5.1.1",
     "express": "^4.17.1",
     "express-ws": "^4.0.0",
     "serialport": "^8.0.7",
@@ -14,5 +15,13 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "snowblind@km4mxq.org",
-  "license": "ISC"
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/snowblind/LAPS.git"
+  },
+  "bugs": {
+    "url": "https://github.com/snowblind/LAPS/issues"
+  },
+  "homepage": "https://github.com/snowblind/LAPS#readme"
 }
