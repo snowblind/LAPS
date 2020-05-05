@@ -32,7 +32,7 @@ Download my git repository
 
 * `wget https://github.com/snowblind/LAPS/archive/master.zip`
 * `unzip master.zip`
-* `cd master`
+* `cd LAPS-master`
 * `npm install`
 * `node laps --serialport /dev/ttyACM1`
 
