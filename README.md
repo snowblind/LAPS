@@ -31,7 +31,7 @@ Download my git repository
 ### Raspberry PI Install
 
 ```shell
-apt-get install nodejs
+sudo apt install nodejs build-essential
 wget https://github.com/snowblind/LAPS/archive/master.zip
 unzip master.zip
 cd LAPS-master
@@ -39,7 +39,7 @@ npm install
 node laps --serialport /dev/ttyACM1
 ```
 
-#### find serial port
+#### Find serial port
   
 ```shell
 root@RPI3-MAIN:~/RCLAPS # lsusb
