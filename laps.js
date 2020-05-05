@@ -10,7 +10,7 @@ const options = commandLineArgs(optionDefinitions)
 const sprintf = require('sprintf-js').sprintf
 const SerialPort = require('serialport')
 const Readline = require('@serialport/parser-readline')
-const port = new SerialPort("com5", { baudRate: 115200 })
+const port = new SerialPort( options.serialport, { baudRate: 115200 })
 
 const parser = new Readline()
 port.pipe(parser)

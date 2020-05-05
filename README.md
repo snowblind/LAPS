@@ -30,7 +30,28 @@ Download my git repository
 
 ### Raspberry PI Install
 
-* coming soon
+* `wget https://github.com/snowblind/LAPS/archive/master.zip`
+* `unzip master.zip`
+* `cd master`
+* `npm install`
+* `node laps --serialport /dev/ttyACM1`
+
+#### find serial port
+  
+```shell
+root@RPI3-MAIN:~/RCLAPS # lsusb
+Bus 001 Device 005: ID 04b4:0008 Cypress Semiconductor Corp.
+
+root@RPI3-MAIN:~/RCLAPS # ll /dev/serial/by-id
+
+lrwxrwxrwx 1 root root 13 May  4 20:21 usb-MV_Lap_timing_USB_Lap_Timing -> ../../ttyACM1
+```
+
+* full setup coming soon
+
+### Errors
+
+If you get a `Error: listen EADDRINUSE :::80` when trying to start node laps.js it means you already have a web server using port 80. Will make this a command line option to set different port at some point. Note port 80 is the default port for web servers.  
 
 ## Config Options
 
