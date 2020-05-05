@@ -30,11 +30,14 @@ Download my git repository
 
 ### Raspberry PI Install
 
-* `wget https://github.com/snowblind/LAPS/archive/master.zip`
-* `unzip master.zip`
-* `cd LAPS-master`
-* `npm install`
-* `node laps --serialport /dev/ttyACM1`
+```shell
+apt-get install nodejs
+wget https://github.com/snowblind/LAPS/archive/master.zip
+unzip master.zip
+cd LAPS-master
+npm install
+node laps --serialport /dev/ttyACM1
+```
 
 #### find serial port
   
@@ -76,10 +79,6 @@ Right now this is a "personal" type lap software. You can not see everybody else
 It may look ugly to you and I don't care. It works for what I want. The css, html files are changeable.  
 
 I removed the limit of one connection per transponder page.
-
-At some point I will add info on setting up Raspberry PI to run this.
-
-I use icons from: here
 
 ## Licensing terms
 
