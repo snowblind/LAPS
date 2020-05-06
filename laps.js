@@ -202,13 +202,12 @@ parser.on('data', line => {
         var transid = parseInt( line.substr(0, 6), 16 );                                               //TODO:MJP This checking may need to be more robust              
         
 
-        if(!transid)
-        {                                                                                          
+        if(!transid)                                                                                     
           return;
-        }
+        
 
         
-        if( ! found_transids[transid] )                                                                 //Only run when we find a new transponder
+        if( !found_transids[transid] )                                                                 //Only run when we find a new transponder
         {  
           found_transids[transid]  = Object.create( myData ); 
           found_transids[transid].laps  = Object.create( Object );                                      //FUCK JS Do not know why what I was doing before would not work
