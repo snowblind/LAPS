@@ -1,0 +1,6 @@
+.yourstats  {border:none;border-collapse:collapse;width:30%;margin-left:auto;margin-right:auto;}
+.yourstats td{background-color:#888;color:white;font-family:Arial, sans-serif;font-size:14px;overflow:hidden;padding:10px 5px;word-break:normal;}
+.yourstats .drt1{text-align:start;vertical-align:center}
+.yourstats .drt2{text-align:start;vertical-align:center}
+.yourstats .lrt1{background-color:#999;text-align:start;vertical-align:center;}
+.yourstats .lrt2{background-color:#999;text-align:center;vertical-align:center}

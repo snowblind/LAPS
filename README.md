@@ -12,7 +12,7 @@ I would like to thank Marco Venturini - mv4wd for the use of RC HourGlass logo -
 
 ___
 
-### Windows PC install:
+### Windows PC install
 
 Get [NodeJS](https://nodejs.org/en/)
 
