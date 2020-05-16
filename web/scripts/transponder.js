@@ -1,6 +1,9 @@
 
 var connection = new WebSocket('ws://'+location.hostname + location.pathname, ['arduino']);
 
+var lapdata;
+const scrollIntoViewOptions = { behavior: "smooth", block: "end" };
+
 connection.onopen = function (){  
     console.log('WebSocket connection opened');  
 };
@@ -29,15 +32,16 @@ connection.onmessage = function(e){
                         body += '<li>' + key + ' ' + jsonmsg.laps[key] + '</li>'
                      }
                      body += '<p></p><p></p>'
-                     document.getElementById('lapdata').innerHTML = body;
+                     lapdata.innerHTML = body;
+                     lapdata.scrollIntoView(scrollIntoViewOptions);
                      console.log( 'command 66' )
                 break;
                 case 67:
-                     document.getElementById('lapdata').innerHTML = '<h1 style="color:yellow">READY!!</h1> Pass over the loop to start';
+                     lapdata.innerHTML = '<h1 style="color:yellow">READY!!</h1> Pass over the loop to start';
                      console.log( 'command 67' )
                 break;
                 case 68:
-                     document.getElementById('lapdata').innerHTML = '<h1 style="color:green">GO!!!</h1>';
+                     lapdata.innerHTML = '<h1 style="color:green">GO!!!</h1>';
                      console.log( 'command 68' )
                 break;
                 case 80:
@@ -46,7 +50,7 @@ connection.onmessage = function(e){
                 break;
                 case 81:
                      body += '<p></p><p></p>'
-                     document.getElementById('lapdata').innerHTML = body;
+                     lapdata.innerHTML = body;
                      console.log( 'command 81')
                 break;
               }
@@ -63,10 +67,11 @@ connection.onclose = function(){
  
 function clearUserData(){
     connection.send(  JSON.stringify( { command: 22, tid: location.pathname.substr(1, 7) }) );
-    document.getElementById('lapdata').innerHTML = '<h1 style="color:yellow">READY!!</h1> Pass over the loop to start';
+    lapdata.innerHTML = '<h1 style="color:yellow">READY!!</h1> Pass over the loop to start';
 }
 
 function load(){
+  lapdata =  document.getElementById('lapdata');
 	  console.log( 'load event detected!' );   
 }
 window.onload = load;

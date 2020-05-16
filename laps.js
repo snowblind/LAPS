@@ -1,25 +1,21 @@
-const optionDefinitions = [
-  { name: 'verbose', alias: 'v', type: Boolean }, 
-  { name: 'debug', alias: 'd', type: Boolean, defaultOption: false },
-  { name: 'wwwport', type: Number, multiple: false, defaultValue: [ 80 ] },
-  { name: 'serialport', alias: 'p', type: String, multiple: false, defaultValue: [ 'com5' ] }
-]
+const commandline = require('./util/handle_commandline')
 
-const commandLineArgs = require('command-line-args')
-const options = commandLineArgs(optionDefinitions)
+if( commandline.options.help ){ 
+  commandline.printUsage()
+  process.exit(0)
+}
 
 const sprintf = require('sprintf-js').sprintf
 const SerialPort = require('serialport')
 const Readline = require('@serialport/parser-readline')
-const port = new SerialPort( options.serialport, { baudRate: 115200 })
-
+const port = new SerialPort( commandline.options.serialport.toString(), { baudRate: 115200 } )
 const parser = new Readline()
 port.pipe(parser)
 
 const express = require('express')
 const app = express()
 const expressWs = require('express-ws')(app);
-
+const VERSION = require('./package.json').version
 
 const fs = require('fs');
 const home_html_cached = fs.readFileSync( __dirname + '/web/html/home.html').toString();
@@ -51,7 +47,7 @@ var myData = {
 }; 
 
 //setup transponder id with info for testing
-if( options.debug )
+if( commandline.options.debug )
 { 
   found_transids[7531106] = { 
     tid: 7531106,
@@ -63,8 +59,18 @@ if( options.debug )
     laps: { lap1: '00:07.748', lap2: '00:10.816', lap3: '00:05.035' } 
   }
   found_transids[7531106].clients = new Set()
+
+  found_transids[4572215] = {
+  tid: 4572215,
+  lapcount: 3,
+  lastlap: 2351809139, 
+  firstseen: 2351793536, 
+  fastlap: 3744,
+  name: '', 
+  laps: { lap1: '00:03.744', lap2: '00:07.985', lap3: '00:03.874' }
+  }
+  found_transids[4572215].clients = new Set()
 }
-  
 app.use('/web', express.static('web'));
 app.use('/scripts', express.static('web/scripts'));
 app.use('/icons', express.static( 'web/icons'));
@@ -137,11 +143,11 @@ res.send( transponder_html_cached )
 
 })
 
-if( options.wwwport == 80 ){                                                                                             //Start Web Server
-  app.listen( options.wwwport.toString(), () => console.log(`LAPS web app listening at http://yourserveripadress/`) )                       
+if( commandline.options.wwwport == 80 ){                                                                                             //Start Web Server
+  app.listen( commandline.options.wwwport.toString(), () => console.log( 'LAPS V' + VERSION + ' web app listening at http://yourserveripadress/' ))                       
 } 
 else{ 
-  app.listen( options.wwwport.toString(), () => console.log(`LAPS web app listening at http://yourserveripadress:${options.wwwport}/`) )          
+  app.listen( commandline.options.wwwport.toString(), () => console.log( 'LAPS V' + VERSION + ' web app listening at http://yourserveripadress:' + options.wwwport + '/' ))          
 }
 
 parser.on('data', line => {
@@ -159,14 +165,14 @@ parser.on('data', line => {
         if( !found_transids[transid] )                                                                 //Only run when we find a new transponder
         {  
           found_transids[transid] = Object.create( myData ); 
-          found_transids[transid].laps = Object.create( Object );                                      //FUCK JS Do not know why what I was doing before would not work
+          found_transids[transid].laps = Object.create( Object );                                      //Formatted for web use
           found_transids[transid].clients = new Set()
           found_transids[transid].tid = transid;                
           found_transids[transid].name = findFname(transid)
             
             
-          updateRootWebPage();
-
+            updateRootWebPage();
+          
             console.log("New Transponder found: " + transid)
           return
         }
@@ -187,6 +193,8 @@ parser.on('data', line => {
 
         
         found_transids[transid].lastlap = time;
+
+        //console.dir(found_transids[transid], {colors: true, depth: 2 }) //debug
         
         if( found_transids[transid].clients ){
           updateTransponderWebPage( transid, { command: 66, laps: found_transids[transid].laps } )
@@ -234,21 +242,21 @@ function clearUserData( tid ){
     console.dir(found_transids[tid], {colors: true, depth: 1 }) //debug
 }
 
-function updateRootWebPage( command ){
-  var body = '';
-  found_transids.forEach(function(item){
-      if( item.name){
-        body += sprintf( "<li><a href=\"%s\" ref=>%s</a></li>",  item.tid, "Transponder: " + item.name + ':' + item.tid )
-      }
-      else{
-        body += sprintf( "<li><a href=\"%s\" ref=>%s</a></li>",  item.tid, "Transponder: " + item.tid )
-      }
-  })
-
+function updateRootWebPage(){                                 //Not sure if this version is faster or not.. need to test on RPI node 10.17.0
+  let body =''
+    found_transids.forEach(function(item){       
+        if( item.name ){
+          body += '<li><a href="' +  item.tid + '" ref=>Transponder: ' + item.name + ':' + item.tid + '</a></li>'
+        }
+        else{
+          body +=  '<li><a href="' +  item.tid + '" ref=>Transponder: ' + item.tid + '</a></li>'      
+        }
+                               
+    });
   rootclients.forEach(client =>
   {
-    client.send(body);                    //TODO:MJP change this to sending a JSON msg and handle on client in JS.. this seems kinda slow on RPI running nodejs 10.17.0 
-  });                                     // it could be all the above memory alloc too, or sprintf, not sure
+      client.send( JSON.stringify( { command: 10, body: body } ) ); 
+  });                                    
 }
 
 function updateTransponderWebPage( tid, command){

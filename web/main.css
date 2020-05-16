@@ -136,3 +136,12 @@ input.enabled[type=range]::-webkit-slider-runnable-track {
 .grid > div > header > h1 {
     text-align:center;
 }
+
+@media only screen and (max-width: 768px) {
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      padding: 1em;
+      grid-row-gap: 10px;
+    }
+ }
